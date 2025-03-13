@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ '支付' if session.get('language', 'zh') == 'zh' else 'Payment' }}{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">{{ '支付' if session.get('language', 'zh') == 'zh' else 'Payment' }}</h1>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p>{{ '目的地' if session.get('language', 'zh') == 'zh' else 'Destination' }}: {{ dest_name }}</p>
+            <p>{{ '票种' if session.get('language', 'zh') == 'zh' else 'Ticket Type' }}: {{ ticket_type }}</p>
+            <p>{{ '座位' if session.get('language', 'zh') == 'zh' else 'Seat' }}: {{ seat_type }}</p>
+            <h3>{{ '应付金额' if session.get('language', 'zh') == 'zh' else 'Amount Due' }}: ¥{{ "%.2f"|format(price) }}</h3>
+        </div>
+    </div>
+    <form method="post">
+        <div class="mb-3">
+            <label for="payment_method" class="form-label">{{ '支付方式' if session.get('language', 'zh') == 'zh' else 'Payment Method' }}</label>
+            <select class="form-select" id="payment_method" name="payment_method" required>
+                <option value="MCard">MCard</option>
+                <option value="现金">{{ '现金' if session.get('language', 'zh') == 'zh' else 'Cash' }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">{{ '确认支付' if session.get('language', 'zh') == 'zh' else 'Confirm Payment' }}</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-link mt-3 d-block text-center">{{ '返回首页' if session.get('language', 'zh') == 'zh' else 'Back to Home' }}</a>
+{% endblock %}

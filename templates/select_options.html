@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ '选择票务选项' if session.get('language', 'zh') == 'zh' else 'Select Options' }}{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">{{ '选择票务选项' if session.get('language', 'zh') == 'zh' else 'Select Ticket Options' }}</h1>
+    <p class="text-center">{{ '目的地' if session.get('language', 'zh') == 'zh' else 'Destination' }}: {{ dest_name }}</p>
+    <form method="post">
+        <div class="mb-3">
+            <label for="ticket_type" class="form-label">{{ '车票类型' if session.get('language', 'zh') == 'zh' else 'Ticket Type' }}</label>
+            <select class="form-select" id="ticket_type" name="ticket_type" required>
+                {% for type in ticket_types %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="seat_type" class="form-label">{{ '座位类型' if session.get('language', 'zh') == 'zh' else 'Seat Type' }}</label>
+            <select class="form-select" id="seat_type" name="seat_type" required>
+                {% for type in seat_types %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">{{ '下一步' if session.get('language', 'zh') == 'zh' else 'Next' }}</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-link mt-3 d-block text-center">{{ '返回首页' if session.get('language', 'zh') == 'zh' else 'Back to Home' }}</a>
+{% endblock %}

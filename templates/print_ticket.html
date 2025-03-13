@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ '车票' if session.get('language', 'zh') == 'zh' else 'Ticket' }}{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">{{ '您的车票' if session.get('language', 'zh') == 'zh' else 'Your Ticket' }}</h1>
+    <div class="card">
+        <div class="card-body text-center">
+            <h2>=== {{ '车票' if session.get('language', 'zh') == 'zh' else 'Ticket' }} ===</h2>
+            <p><strong>{{ '票号' if session.get('language', 'zh') == 'zh' else 'Ticket ID' }}:</strong> {{ ticket.ticket_id }}</p>
+            <p><strong>{{ '目的地' if session.get('language', 'zh') == 'zh' else 'Destination' }}:</strong> {{ ticket.destination }}</p>
+            <p><strong>{{ '类型' if session.get('language', 'zh') == 'zh' else 'Type' }}:</strong> {{ ticket.ticket_type }}</p>
+            <p><strong>{{ '座位' if session.get('language', 'zh') == 'zh' else 'Seat' }}:</strong> {{ ticket.seat_type }}</p>
+            <p><strong>{{ '价格' if session.get('language', 'zh') == 'zh' else 'Price' }}:</strong> ¥{{ "%.2f"|format(ticket.price) }}</p>
+            <p><strong>{{ '时间' if session.get('language', 'zh') == 'zh' else 'Time' }}:</strong> {{ ticket.time }}</p>
+            <h2>===========</h2>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-custom w-100 mt-3">{{ '返回首页' if session.get('language', 'zh') == 'zh' else 'Back to Home' }}</a>
+{% endblock %}

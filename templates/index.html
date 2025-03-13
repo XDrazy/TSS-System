@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ '首页' if session.get('language', 'zh') == 'zh' else 'Home' }}{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">{{ '欢迎使用 TSS 售票系统' if session.get('language', 'zh') == 'zh' else 'Welcome to TSS Ticket System' }}</h1>
+    <form method="post" class="text-center">
+        <button type="submit" name="action" value="start" class="btn btn-custom btn-lg mb-3">{{ '开始购票' if session.get('language', 'zh') == 'zh' else 'Start Purchase' }}</button><br>
+        <button type="submit" name="action" value="reset" class="btn btn-secondary btn-lg">{{ '重置系统' if session.get('language', 'zh') == 'zh' else 'Reset System' }}</button>
+    </form>
+{% endblock %}

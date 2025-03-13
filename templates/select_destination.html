@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ '选择目的地' if session.get('language', 'zh') == 'zh' else 'Select Destination' }}{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">{{ '请选择目的地' if session.get('language', 'zh') == 'zh' else 'Please Select Destination' }}</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="destination" class="form-label">{{ '目的地' if session.get('language', 'zh') == 'zh' else 'Destination' }}</label>
+            <select class="form-select" id="destination" name="destination" required>
+                {% for code, info in destinations.items() %}
+                    <option value="{{ code }}">{{ code }} - {{ info.name }} (¥{{ info.price }} - {{ '剩余' if session.get('language', 'zh') == 'zh' else 'Stock' }}: {{ info.stock }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">{{ '下一步' if session.get('language', 'zh') == 'zh' else 'Next' }}</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-link mt-3 d-block text-center">{{ '返回首页' if session.get('language', 'zh') == 'zh' else 'Back to Home' }}</a>
+{% endblock %}
